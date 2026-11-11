@@ -1,0 +1,26 @@
+{
+  "typst_version": "typst 0.15.1 (9dfd3a08)",
+  "creation_timestamp": 1794355200,
+  "assets": {
+    "typst-aarch64-apple-darwin.tar.xz": {
+      "url": "https://github.com/typst/typst/releases/download/v0.15.1/typst-aarch64-apple-darwin.tar.xz",
+      "sha256": "48f62ed034aa3a7978309579ac6ca00045e2ef0da73114e8af27cfd8e74dc05a"
+    },
+    "typst-aarch64-unknown-linux-musl.tar.xz": {
+      "url": "https://github.com/typst/typst/releases/download/v0.15.1/typst-aarch64-unknown-linux-musl.tar.xz",
+      "sha256": "5aa8d74a3d906e60ea12a66ac2f37f8eef1b14cbad7182a745e393a10c23dcee"
+    },
+    "typst-x86_64-apple-darwin.tar.xz": {
+      "url": "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-apple-darwin.tar.xz",
+      "sha256": "7f9fdd9584866245de9a79e0add8f9236fae6f40a8a45e2c4771ccc14db4e0fa"
+    },
+    "typst-x86_64-unknown-linux-musl.tar.xz": {
+      "url": "https://github.com/typst/typst/releases/download/v0.15.1/typst-x86_64-unknown-linux-musl.tar.xz",
+      "sha256": "a6d077d0a95eed5a2eba715b2dae06be954f624ccbf85758a03f389ded33118c"
+    }
+  },
+  "fonts": {
+    "fonts/LiberationSans-Bold.ttf": "b72c65e551d653b54217ffad0d1454ce0657e4e8d4a28bcc79e0acd2598f4bf3",
+    "fonts/LiberationSans-Regular.ttf": "075e71be4c58beda172ecb574a799308f04c3d054c6a5b7434954d3b0f1b28d8"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "name": "Alex Example",
+  "title": "Software Engineer",
+  "location": "Example City",
+  "phone": "+1 202 555 0147",
+  "email": "alex@example.com",
+  "linkedin": "https://example.com/alex",
+  "github": "https://example.com/code",
+  "experience": [
+    {
+      "id": "northstar",
+      "company": "Northstar Studio",
+      "role": "Software Engineer",
+      "location": "Example City",
+      "dates": "Jan 2023 – Present",
+      "groups": [
+        {
+          "heading": "Data delivery platform",
+          "bullets": [
+            "Designed and delivered a service that consolidates incoming data into a consistent format for downstream applications. Owned implementation, integration testing and the production rollout."
+          ]
+        },
+        {
+          "heading": "Performance and reliability",
+          "bullets": [
+            "Introduced profiling and repeatable benchmarks to investigate slow requests. Added regression checks and operational dashboards so engineers could track behavior after deployment."
+          ]
+        },
+        {
+          "heading": "Engineering collaboration",
+          "bullets": [
+            "Worked with product and infrastructure colleagues to turn requirements into incremental releases. Documented design decisions and supported teammates through reviews and troubleshooting."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "harbor",
+      "company": "Harbor Workshop",
+      "role": "Software Engineer",
+      "location": "Sample Town",
+      "dates": "Sep 2020 – Dec 2022",
+      "groups": [
+        {
+          "heading": "Service modernization",
+          "bullets": [
+            "Replaced a manual reporting workflow with an automated pipeline. Designed the data model, implemented scheduled processing and exposed the results through an internal API."
+          ]
+        },
+        {
+          "heading": "Developer tooling",
+          "bullets": [
+            "Built a reusable local test environment and deployment checks to make releases more predictable. Helped the team reproduce failures before changes reached production."
+          ]
+        },
+        {
+          "heading": "Mentoring and outreach",
+          "bullets": [
+            "Prepared onboarding exercises and coached new engineers through their first contributions.",
+            "Helped organize student workshops and demonstrated how the team approaches practical software problems."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cedar",
+      "company": "Cedar Lab",
+      "role": "Software Engineering Intern",
+      "location": "Sample Town",
+      "dates": "Jun 2019 – Aug 2020",
+      "groups": [
+        {
+          "heading": "",
+          "bullets": [
+            "Implemented a prototype for analyzing time-series data and reviewed the results with the research team.",
+            "Added automated tests and documentation so subsequent contributors could extend the prototype."
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Example University",
+      "location": "Sample Town",
+      "degree": "MSc in Computer Science",
+      "dates": "Sep 2018 – Jun 2020",
+      "detail": "Specialization in software systems"
+    },
+    {
+      "school": "Example University",
+      "location": "Sample Town",
+      "degree": "BSc in Computer Science",
+      "dates": "Sep 2015 – Jun 2018",
+      "detail": "Coursework in algorithms and systems"
+    }
+  ],
+  "skills": [
+    {
+      "heading": "Programming & Systems",
+      "items": [
+        "C++, Python, SQL",
+        "Performance profiling",
+        "Concurrency and system design",
+        "Testing and code review"
+      ]
+    },
+    {
+      "heading": "Tools & Practices",
+      "items": [
+        "Git and continuous integration",
+        "Linux",
+        "API design and documentation"
+      ]
+    }
+  ],
+  "languages": "English — Fluent · French — Conversational"
+}

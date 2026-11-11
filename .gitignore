@@ -1,0 +1,13 @@
+**/previews/
+__pycache__/
+.DS_Store
+.tools/
+.env
+.env.*
+*.token
+*.pem
+*.key
+
+# Real profiles stay local/private; only the fictional example belongs here.
+profiles/*
+!profiles/example/
