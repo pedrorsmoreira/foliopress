@@ -13,8 +13,8 @@ def main():
     parser.add_argument('--profile', required=True, help='Profile folder with reference/approved.pdf')
     parser.add_argument('--output-dir')
     args = parser.parse_args()
-    folder = ROOT / args.profile
-    output = ROOT / args.output_dir if args.output_dir else folder / 'output'
+    folder = Path(args.profile).resolve()
+    output = Path(args.output_dir).resolve() if args.output_dir else folder / 'output'
     with tempfile.TemporaryDirectory() as temp:
         digests = []
         for label, pdf in [('approved', folder / 'reference/approved.pdf'),

@@ -127,10 +127,10 @@ def main():
     parser.add_argument('--profile', required=True, help='Profile folder')
     parser.add_argument('--output-dir', help='Override that profile’s output folder')
     args = parser.parse_args()
-    folder = ROOT / args.profile
+    folder = Path(args.profile).resolve()
     profile = json.loads((folder / 'profile.json').read_text())
     settings = json.loads((folder / 'cv-settings.json').read_text())
-    output = ROOT / args.output_dir if args.output_dir else folder / 'output'
+    output = Path(args.output_dir).resolve() if args.output_dir else folder / 'output'
     verify(output / 'cv.pdf', profile, settings)
 
 if __name__ == '__main__':

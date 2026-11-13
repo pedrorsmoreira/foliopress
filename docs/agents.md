@@ -112,3 +112,14 @@ The regression suite must continue to reject intentionally inconsistent PDFs.
 Never relax a check just to ship a crowded layout; use available whitespace and
 visually inspect every page. Profiles may choose their own design, but equal roles
 within that design should remain equal.
+
+## Separate private profile repository (optional)
+
+See README's optional private profile setup. Open the private repository and read
+its root instructions, the separate generator checkout's AGENTS.md, and every
+personal/variant instruction file. Run the generator by path, for example
+`bash ../foliopress/build.sh --profile profile`. Explicit profile/output paths
+resolve from the caller's directory. Keep facts, preferences, provenance, references
+and PDFs in the private repository. Record the generator commit there; update it
+only after rebuilding and visually reviewing the result. Shared generator edits
+belong in the public checkout and must use fictional fixtures.

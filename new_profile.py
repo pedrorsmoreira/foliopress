@@ -3,6 +3,7 @@
 import argparse
 import json
 import re
+import shlex
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
@@ -12,10 +13,11 @@ def main():
     parser.add_argument('slug', help='Folder name, e.g. alex-smith')
     parser.add_argument('--name', required=True)
     parser.add_argument('--title', required=True)
+    parser.add_argument('--directory', help='Create the profile at this path instead of profiles/<slug>')
     args = parser.parse_args()
     if not re.fullmatch(r'[a-z0-9][a-z0-9-]*', args.slug):
         parser.error('Use lowercase letters, numbers and hyphens for the folder name.')
-    folder = ROOT / 'profiles' / args.slug
+    folder = Path(args.directory).resolve() if args.directory else ROOT / 'profiles' / args.slug
     if folder.exists():
         parser.error(f'{folder} already exists; refusing to overwrite it.')
     profile = {
@@ -46,8 +48,8 @@ def main():
         'Follow root AGENTS.md. This is an independent profile, not an adaptation of another person’s facts.\n'
         'Replace TODO fields only with owner-confirmed information before producing a final PDF.\n'
         'Ask the owner for missing facts and record personal preferences here.\n')
-    print(f'Created {folder.relative_to(ROOT)}. Keep real data in a private workspace. Fill TODO fields, then run:')
-    print(f'bash build.sh --profile {folder.relative_to(ROOT)}')
+    print(f'Created {folder}. Keep real data in a private workspace. Fill TODO fields, then run:')
+    print(f'python3 {shlex.quote(str(ROOT / "build.py"))} --profile {shlex.quote(str(folder))}')
 
 if __name__ == '__main__':
     main()

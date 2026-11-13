@@ -91,6 +91,52 @@ A coding agent can operate its files and commands using the agent’s own setup.
 Your final CV is `profiles/alex-smith/output/cv.pdf`. Keep the source so you can
 return later to update it. Do not submit the fictional example as your own CV.
 
+## Optional: keep only your profile in a private repository
+
+You can keep the template-copy workflow above, or use a small private repository
+containing only your profile, personal instructions, variants, references and PDFs.
+FolioPress stays in a separate public checkout; your private Git remote backs up
+your personal files without maintaining a copy of the generator.
+
+Create an empty **private** repository on GitHub, then clone it beside FolioPress:
+
+```sh
+git clone https://github.com/pedrorsmoreira/foliopress.git
+git clone YOUR_PRIVATE_REPOSITORY_URL my-cv
+python3 foliopress/bootstrap.py
+python3 foliopress/new_profile.py alex-smith --name "Alex Smith" --title "Software Engineer" --directory my-cv/profile
+cd my-cv
+```
+
+Fill `profile/profile.json` and `profile/cv-settings.json` with confirmed facts.
+Create a root `AGENTS.md` telling agents to read the generator's `AGENTS.md` and
+`docs/agents.md`, then your `profile/AGENTS.md` and provenance notes. Record your
+FolioPress checkout location and exact commit in your README:
+
+```sh
+git -C ../foliopress rev-parse HEAD > foliopress-version.txt
+printf '**/previews/\n' > .gitignore
+bash ../foliopress/build.sh --profile profile
+python3 ../foliopress/verify.py --profile profile
+# After inspecting every page, commit source and output to your private remote.
+git add .
+git commit -m "Save personal CV source and PDF"
+git push
+```
+
+The PDF is `profile/output/cv.pdf`. Keep `foliopress-version.txt` committed. On a
+new machine, clone both repositories, check out that recorded commit in FolioPress,
+and bootstrap it. Update the recorded version deliberately after rebuilding and
+reviewing your CV. A link alone does not pin the rendering tools.
+
+All explicit `--profile` and `--output-dir` paths are relative to your current
+working directory (absolute paths also work). `--all` builds profiles inside the
+FolioPress checkout only; build external variants explicitly, for example
+`bash ../foliopress/build.sh --profile profile/variants/example-role`.
+The generator stages the selected JSON and template in a temporary directory for
+compilation, then removes it; personal files are never staged in the public checkout.
+Keep the private repository private when pushing source and PDFs.
+
 ## Edit with any coding agent
 
 Works with file-and-shell coding agents such as Codex, Claude Code, Gemini CLI,
