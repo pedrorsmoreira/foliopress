@@ -32,7 +32,8 @@
             "Worked with product and infrastructure colleagues to turn requirements into incremental releases. Documented design decisions and supported teammates through reviews and troubleshooting."
           ]
         }
-      ]
+      ],
+      "duration": "3 years 11 months"
     },
     {
       "id": "harbor",
@@ -60,7 +61,8 @@
             "Helped organize student workshops and demonstrated how the team approaches practical software problems."
           ]
         }
-      ]
+      ],
+      "duration": "2 years 4 months"
     },
     {
       "id": "cedar",
@@ -76,7 +78,8 @@
             "Added automated tests and documentation so subsequent contributors could extend the prototype."
           ]
         }
-      ]
+      ],
+      "duration": "1 year 3 months"
     }
   ],
   "education": [

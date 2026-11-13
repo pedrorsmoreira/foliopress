@@ -91,7 +91,8 @@ pending and ask the owner to inspect the rendered pages; never claim it passed.
 
 ## Public example maintenance
 
-When example content or layout changes, rebuild the fictional example, inspect it,
+When adding or changing a visible CV feature, update the fictional example to
+demonstrate it. When example content or layout changes, rebuild it, inspect it,
 and refresh docs/example.png from its rendered page. Keep the README preview in
 sync. Never use a real personal CV as the public screenshot or sample.
 

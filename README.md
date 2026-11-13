@@ -11,7 +11,7 @@ persistent instructions for AI agents. You own the source and the output.
 
 [View the example PDF](profiles/example/output/cv.pdf) · [Create your CV](#create-your-own-cv) · [Use any coding agent](#edit-with-any-coding-agent)
 
-<img src="docs/example.png" alt="Fictional CV example: dark blue sidebar with contact, skills, languages and education; clearly separated experience on the right" width="650">
+<img src="docs/example.png" alt="Fictional CV example: dark blue sidebar with contact, skills, languages and education; clearly separated experience with dates and durations on the right" width="650">
 
 *Alex Example, the organizations and all career claims above are fictional. The
 example demonstrates the layout; it is not a real person's CV.*
@@ -27,6 +27,7 @@ You get:
 - A polished A4 PDF with a contrasting sidebar and clearly separated employers.
 - Structured profile data separate from the shared layout and build tools.
 - Independent profiles and role-specific variants.
+- Optional experience durations beneath employment dates.
 - Pinned compiler and font files for repeatable rendering.
 - Checks for missing text, page overflow, fonts and declared reading order.
 - Agent instructions for factual accuracy, visual review and profile privacy.
