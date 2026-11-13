@@ -85,7 +85,7 @@ def verify_layout(pdf, profile, settings):
         check(styles, f'no font style found for {text!r}')
         return styles
 
-    classes = {name: [] for name in ('employer', 'date', 'role', 'location', 'topic', 'body')}
+    classes = {name: [] for name in ('employer', 'date', 'role', 'location', 'topic', 'body', 'duration')}
     gaps = {name: [] for name in ('role-content', 'heading-body', 'topic', 'contribution', 'employer')}
     alignments = {name: [] for name in ('employer', 'date-right', 'role', 'topic', 'body', 'bullet')}
     jobs = [job for job in profile['experience'] if job.get('id') not in settings['omitted_experience']]
@@ -107,6 +107,17 @@ def verify_layout(pdf, profile, settings):
         classes['location'] += style_for(job['location'], role)
         alignments['employer'].append(header['xMin'])
         alignments['date-right'].append(date['xMax'])
+        if job.get('duration'):
+            duration = line_for(job['duration'], date['yMax'], role['yMax'] + 1)
+            check(abs(duration['yMin'] - role['yMin'] + 3.69) <= 0.3,
+                  'duration must sit 3.69pt above the role line')
+            gaps.setdefault('date-duration', []).append(duration['yMin'] - date['yMax'])
+            check(abs(duration['xMax'] - date['xMax']) <= 0.5,
+                  'duration not right-aligned with date')
+            classes['duration'] += style_for(job['duration'], duration)
+            check(style_for(job['duration'], duration) == style_for(job['dates'], date),
+                  'duration typography must match date')
+
         alignments['role'].append(role['xMin'])
         first = after(role, high)
         gaps['role-content'].append(first['yMin'] - role['yMax'])

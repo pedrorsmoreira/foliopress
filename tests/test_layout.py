@@ -7,6 +7,7 @@ import unittest
 from pathlib import Path
 
 from verify_layout import verify_layout
+from verify import verify
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -55,7 +56,8 @@ class RenderedConsistencyTests(unittest.TestCase):
         (cls.folder / 'settings.json').write_text(json.dumps(cls.settings))
         cls.source = (ROOT / 'templates/sidebar.typ').read_text()
 
-    def render(self, old=None, new=None):
+    def render(self, old=None, new=None, profile=None):
+        (self.folder / "profile.json").write_text(json.dumps(profile or self.profile))
         source = self.source
         if old is not None:
             self.assertEqual(source.count(old), 1, 'Mutation anchor changed; update the regression fixture deliberately.')
@@ -71,6 +73,35 @@ class RenderedConsistencyTests(unittest.TestCase):
 
     def test_headed_projects_and_untitled_bullets_are_consistent(self):
         verify_layout(self.render(), self.profile, self.settings)
+
+    def duration_profile(self):
+        profile = json.loads(json.dumps(self.profile))
+        for job, duration in zip(profile['experience'], ['2 years 3 months', '1 year 11 months', '1 year']):
+            job['duration'] = duration
+        return profile
+
+    def test_duration_content_order_and_layout(self):
+        profile = self.duration_profile()
+        verify(self.render(profile=profile), profile, self.settings)
+
+    def test_optional_duration_can_mix_with_existing_headers(self):
+        profile = self.duration_profile()
+        del profile['experience'][1]['duration']
+        verify(self.render(profile=profile), profile, self.settings)
+
+    def test_misaligned_duration_is_rejected(self):
+        profile = self.duration_profile()
+        pdf = self.render('labeldate(roleline, move(dy: -duration-rise, job.duration))',
+                          'labeldate(roleline, move(dx: 3pt, dy: -duration-rise, job.duration))', profile)
+        with self.assertRaisesRegex(ValueError, 'duration not right-aligned with date'):
+            verify_layout(pdf, profile, self.settings)
+
+    def test_duration_typography_must_match_dates(self):
+        profile = self.duration_profile()
+        pdf = self.render('labeldate(roleline, move(dy: -duration-rise, job.duration))',
+                          'labeldate(roleline, move(dy: -duration-rise, text(fill: red, job.duration)))', profile)
+        with self.assertRaisesRegex(ValueError, 'duration typography must match date'):
+            verify_layout(pdf, profile, self.settings)
 
     def test_missing_lead_in_for_untitled_job_is_rejected(self):
         pdf = self.render('v(spacing.role-content, weak: false)',

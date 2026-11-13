@@ -198,6 +198,12 @@ docs/example.png           Rendered README preview
 .github/workflows/         Automated example build checks
 ```
 
+Experience entries can optionally include a `duration` string, such as
+`"3 years 1 month"`. It appears beneath the dates, right-aligned alongside the
+role/location line. Omit the field to keep the existing layout. Durations are
+explicit profile text; they do not change automatically with the system date.
+Update ongoing roles deliberately to keep saved PDF builds reproducible.
+
 Each personal profile contains `profile.json`, `cv-settings.json`, `AGENTS.md`,
 and `output/cv.pdf`. Profiles share tools; they do not share facts. Settings control
 omitted experience IDs and the maximum page count. Leave omitted facts in source

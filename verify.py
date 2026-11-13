@@ -33,6 +33,8 @@ def validate_inputs(profile, settings):
     for job in profile['experience']:
         for key in ('company', 'role', 'location', 'dates', 'groups'):
             require(key in job, f'Missing job field: {key}')
+        if 'duration' in job:
+            require(isinstance(job['duration'], str) and job['duration'].strip(), 'duration must be a non-empty string')
         require(all(isinstance(b, str) and b for g in job['groups'] for b in g['bullets']), 'Empty/invalid contribution')
     ids = {j.get('id') for j in profile['experience'] if j.get('id')}
     require(set(settings['omitted_experience']) <= ids, 'Unknown omitted experience ID')
@@ -57,6 +59,8 @@ def history_anchors(profile, settings):
         if job.get('id') in settings['omitted_experience']:
             continue
         anchors.extend([job['company'], job['dates'], job['role'], job['location']])
+        if job.get('duration'):
+            anchors.append(job['duration'])
         for group in job['groups']:
             if group['heading'] and group['heading'] != 'Main Contributions':
                 anchors.append(group['heading'])

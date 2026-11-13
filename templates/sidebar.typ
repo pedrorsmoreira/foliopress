@@ -17,6 +17,8 @@
   ]
   #v(4pt, weak: false)
 ]
+// Raise durations by 3.69pt: the date-to-duration ink gap becomes 50% of its original 7.39pt.
+#let duration-rise = 3.69pt
 #let labeldate(left, right) = grid(columns: (1fr, auto), column-gutter: 10pt, left, text(size: 9pt, fill: muted, right))
 #place(top + left, dx: 55mm)[#block(width: 133mm)[
   #text(size: 26pt, weight: "bold", fill: accent, p.name)
@@ -30,7 +32,10 @@
   block(sticky: true)[
     #labeldate([#text(weight: "bold", size: 14pt, fill: accent, job.company)], job.dates)
     #v(2pt, weak: false)
-    #text(size: 9.5pt)[#job.role · #text(fill: muted, job.location)]
+    #let roleline = text(size: 9.5pt)[#job.role · #text(fill: muted, job.location)]
+    #if job.at("duration", default: "") != "" {
+      labeldate(roleline, move(dy: -duration-rise, job.duration))
+    } else { roleline }
   ]
   // Every job has the same lead-in, even when its first contribution has no heading.
   v(spacing.role-content, weak: false)
